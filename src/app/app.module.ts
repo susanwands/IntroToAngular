@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchComponent } from './search/search.component';
 import { DrinkListComponent } from './drink-list/drink-list.component';
-import { DrinkComponent } from './drink/drink.component';
+import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
+import { DrinkService } from './services/drink.service';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,16 @@ import { DrinkComponent } from './drink/drink.component';
     FooterComponent,
     SearchComponent,
     DrinkListComponent,
-    DrinkComponent
+    DrinkDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DrinkService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

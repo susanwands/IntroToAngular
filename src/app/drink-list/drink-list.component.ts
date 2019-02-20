@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DrinksService} from '../services/drinks.service'
+import { DrinkService } from '../services/drink.service';
+import { Drink } from '../models/drink';
 
 @Component({
   selector: 'app-drink-list',
@@ -10,13 +11,10 @@ export class DrinkListComponent implements OnInit {
 
   myDrink;
 
-  constructor(private ds: DrinksService) { }
+  constructor(private ds: DrinkService) { }
 
   ngOnInit() {
-    this.ds.getRandomDrink().subscribe(data => {
-      this.myDrink = data;
-      console.log(this.myDrink);
-    });
+
   }
 
 }
