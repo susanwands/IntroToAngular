@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DrinkService } from '../services/drink.service';
 import { Drinks } from '../models/drinks';
+import { Drink } from '../models/drink';
 
 @Component({
   selector: 'app-drink-detail',
@@ -22,7 +23,7 @@ export class DrinkDetailComponent implements OnInit {
   public lookupDrink(): void {
     const id = +this.route.snapshot.paramMap.get('id');
 
-    this.drinkService.lookupDrink(id, document.getElementById('wave'))
+    this.drinkService.lookupDrink(id)
       .subscribe((drink) => this.drink = drink);
   }
 
@@ -47,9 +48,10 @@ export class DrinkDetailComponent implements OnInit {
 
   public ngOnInit(): void {
     this.lookupDrink();
-    this.drinkService.getDrink().subscribe((drink) => {
-      this.myDrink = drink;
-      console.log(this.myDrink.drinks[0].strDrink);
+
+    this.drinkService.selectedDrinkData.subscribe((res) => {
+      this.myDrink = res;
+      console.log(this.myDrink);
     });
   }
 }

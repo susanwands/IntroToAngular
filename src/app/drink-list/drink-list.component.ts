@@ -9,12 +9,18 @@ import { Drink } from '../models/drink';
 })
 export class DrinkListComponent implements OnInit {
 
-  myDrink;
+  drinkList: any;
 
   constructor(private ds: DrinkService) { }
 
   ngOnInit() {
+    this.ds.getList();
+    this.ds.drinkListData.subscribe(res => {
+      if (res) {
+        this.drinkList = res;
+      }
 
+    });
   }
 
 }

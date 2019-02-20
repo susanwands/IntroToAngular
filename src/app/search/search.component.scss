@@ -1,0 +1,21 @@
+.search{
+    
+    padding:20px;
+    background-color:#9ec3a7;
+    input{
+        margin-right:20px;
+        
+    }
+    
+    .btn{
+        background-color: #d37e59;
+        color: white; 
+        :hover{
+            background-color: #cd6c42;
+        }   
+    }
+    
+    .btn:hover{
+            background-color: #cd6c42;        
+    }
+}

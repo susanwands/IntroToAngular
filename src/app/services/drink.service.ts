@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, retry, finalize } from 'rxjs/operators';
-import { Drinks } from '../models/drinks';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+
+
 import { Drink } from '../models/drink';
+import { HAMMER_LOADER } from '@angular/platform-browser';
 
 @Injectable()
 
@@ -13,52 +13,60 @@ export class DrinkService {
   public searchUrl = `${this.baseUrl}search.php?s=`;
   public lookupUrl = `${this.baseUrl}lookup.php?i=`;
 
+
+
+  private drinkList = new BehaviorSubject<Drink[]>([] as Drink[]);
+  private selectedDrink = new BehaviorSubject<Drink>({} as Drink);
+  private material = new BehaviorSubject<Array<any>>([''] as [any]);
+
+  drinkListData = this.drinkList.asObservable();
+  selectedDrinkData = this.selectedDrink.asObservable();
+  materialData = this.material.asObservable();
+
   constructor(
     private http: HttpClient
   ) { }
 
-  public getDrink() {
-    return this.http.get<Drink>('https://www.thecocktaildb.com/api/json/v1/1/random.php').pipe(
-      retry(3),
-      catchError(this.handleError),
-      finalize(() => {
+  getSelectedDrink(id) {
+    this.lookupDrink(id).subscribe(res => {
+      const hold = res;
+      this.selectedDrink.next(hold as Drink);
+    });
 
-      }));
-  }
-  public searchDrinks(query: string, waveElement: Element): Observable<Drinks> {
-    if (!query.trim()) { return of(); }
-
-    return this.http.get<Drinks>(this.searchUrl + query)
-      .pipe(
-        retry(3),
-        catchError(this.handleError),
-        finalize(() => {
-
-        }));
   }
 
-  public lookupDrink(id: number, waveElement: Element): Observable<Drinks> {
-    if (waveElement) { waveElement.classList.add('header__wave--loading'); }
+  getList() {
+    const myDrinks: Drink[] = [];
+    for (let i = 0; i < 10; i++) {
+      this.getRandomDrink().subscribe(res => {
+        console.log(myDrinks);
+        if (res.drinks) {
+          myDrinks.push(res.drinks[0] as Drink);
+        }
 
-    return this.http.get<Drinks>(this.lookupUrl + id)
-      .pipe(
-        retry(3),
-        catchError(this.handleError),
-        finalize(() => {
-
-        }));
-  }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error(`A client-side error occurred: ${error.error.message}`);
-    } else {
-      console.error(
-        `A backend-side error occurred: ${error.status}: ${error.error}`);
+      });
     }
 
-    alert('Something went wrong. Refresh the page and try again.');
 
-    return throwError(error);
+    this.drinkList.next(myDrinks);
   }
+
+  public getRandomDrink(): Observable<any> {
+    return this.http.get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+  }
+
+  public searchDrinks(query: string): Observable<[Drink]> {
+    if (!query.trim()) { return of(); }
+
+    return this.http.get<[Drink]>(this.searchUrl + query);
+
+  }
+
+  public lookupDrink(id: number): Observable<any> {
+
+    return this.http.get<any>(this.lookupUrl + id);
+
+  }
+
+
 }

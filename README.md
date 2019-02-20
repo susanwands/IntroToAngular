@@ -34,8 +34,13 @@ For our Intro to Angular we are recreating this project using the Angular framew
 
 ## Resources
 
+https://www.thecocktaildb.com/api.php
+
 https://toddmotto.com/angular/
 
 https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
+
+https://github.com/glauberm/cocktail_recipes
+
 
 
