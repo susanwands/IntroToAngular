@@ -1,1 +1,24 @@
 
+.recipe{
+    padding: 10px;
+    .close-recipe{
+        background-color: #d37e59;
+        color: white;
+        float: right;
+        display: block; 
+
+        :hover{
+            background-color: #cd6c42;
+        }   
+    }
+    .title{
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    img{
+        max-width: 300px;
+        max-height: 300px;
+        padding: 10px;
+    }
+}

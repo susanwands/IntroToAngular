@@ -1,5 +1,6 @@
 <div>
-  <div *ngFor="let drink of drinkList">
-    {{drink.strDrink}}
+  <div *ngFor="let drink of drinkList" class="drink" (click)="selectDrink(drink.idDrink)">
+    <img src="{{drink.strDrinkThumb}}">
+    <h3>{{drink.strDrink}}</h3>
   </div>
 </div>

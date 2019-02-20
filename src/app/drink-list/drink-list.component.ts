@@ -23,4 +23,7 @@ export class DrinkListComponent implements OnInit {
     });
   }
 
+  selectDrink(id) {
+    this.ds.getSelectedDrink(id);
+  }
 }

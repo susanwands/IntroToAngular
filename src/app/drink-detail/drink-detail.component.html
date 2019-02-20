@@ -1,24 +1,18 @@
 <div *ngIf="myDrink.strDrink">
 
   <div class="recipe">
-    <div class="row">
-      <div class="col-sm-8">
 
-      </div>
-      <div class="col-sm-4">
-        <button type="button" class="btn close-recipe">Close</button>
-      </div>
-    </div>
     <div class="row">
       <img class="col-sm-6" src="{{myDrink.strDrinkThumb}}" />
       <div class="col-sm-6">
         <div>
-          <h2>{{myDrink.strDrink}}</h2>
+          <button type="button" class="btn close-recipe" (click)="closeDrink()">Close</button>
+          <h2 class="title">{{myDrink.strDrink}}</h2>
         </div>
         <div>
           <h3>Ingredients</h3>
           <ul>
-            <li>hi</li>
+            <li *ngFor="let item of ingredients">{{item.ingredient}}</li>
 
           </ul>
         </div>

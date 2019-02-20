@@ -29,12 +29,15 @@ export class DrinkService {
 
   getSelectedDrink(id) {
     this.lookupDrink(id).subscribe(res => {
-      const hold = res;
+      const hold = res.drinks[0];
       this.selectedDrink.next(hold as Drink);
     });
 
   }
 
+  clearSelectedDrink() {
+    this.selectedDrink.next({} as Drink);
+  }
   getList() {
     const myDrinks: Drink[] = [];
     for (let i = 0; i < 10; i++) {

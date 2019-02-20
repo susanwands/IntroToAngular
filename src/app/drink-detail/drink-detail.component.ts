@@ -13,23 +13,14 @@ export class DrinkDetailComponent implements OnInit {
   @Input() drink: Drinks;
 
   myDrink: any;
+  ingredients: any;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
+
     private drinkService: DrinkService
   ) { }
 
-  public lookupDrink(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
 
-    this.drinkService.lookupDrink(id)
-      .subscribe((drink) => this.drink = drink);
-  }
-
-  public close(): void {
-    this.router.navigate([''], { replaceUrl: true });
-  }
 
   public getIngredients(drink: string): Array<Drinks> {
     let ingredients = [];
@@ -47,11 +38,15 @@ export class DrinkDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.lookupDrink();
+
 
     this.drinkService.selectedDrinkData.subscribe((res) => {
       this.myDrink = res;
-      console.log(this.myDrink);
+      this.ingredients = this.getIngredients(this.myDrink);
     });
+  }
+
+  closeDrink() {
+    this.drinkService.clearSelectedDrink();
   }
 }

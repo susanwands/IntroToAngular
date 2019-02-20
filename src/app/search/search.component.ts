@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DrinkService } from '../services/drink.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ds: DrinkService) { }
 
   ngOnInit() {
   }
 
+  refreshList() {
+    this.ds.getList();
+  }
 }
