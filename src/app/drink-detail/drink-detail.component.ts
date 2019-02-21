@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { DrinkService } from '../services/drink.service';
-import { Drinks } from '../models/drinks';
 import { Drink } from '../models/drink';
 
 @Component({
@@ -10,19 +8,19 @@ import { Drink } from '../models/drink';
   styleUrls: ['./drink-detail.component.scss']
 })
 export class DrinkDetailComponent implements OnInit {
-  @Input() drink: Drinks;
-
   myDrink: any;
   ingredients: any;
 
-  constructor(
+  constructor(private ds: DrinkService) { }
 
-    private drinkService: DrinkService
-  ) { }
+  public ngOnInit() {
+    this.ds.selectedDrinkData.subscribe((res) => {
+      this.myDrink = res;
+      this.ingredients = this.getIngredients(this.myDrink);
+    });
+  }
 
-
-
-  public getIngredients(drink: string): Array<Drinks> {
+  public getIngredients(drink: string): Array<Drink> {
     let ingredients = [];
 
     for (let i = 1; i <= 15; i++) {
@@ -33,20 +31,10 @@ export class DrinkDetailComponent implements OnInit {
         });
       }
     }
-
     return ingredients;
   }
 
-  public ngOnInit(): void {
-
-
-    this.drinkService.selectedDrinkData.subscribe((res) => {
-      this.myDrink = res;
-      this.ingredients = this.getIngredients(this.myDrink);
-    });
-  }
-
   closeDrink() {
-    this.drinkService.clearSelectedDrink();
+    this.ds.clearSelectedDrink();
   }
 }

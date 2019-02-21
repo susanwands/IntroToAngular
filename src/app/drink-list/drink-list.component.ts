@@ -19,7 +19,6 @@ export class DrinkListComponent implements OnInit {
       if (res) {
         this.drinkList = res;
       }
-
     });
   }
 

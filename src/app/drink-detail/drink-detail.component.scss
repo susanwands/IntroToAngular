@@ -2,15 +2,14 @@
 .recipe{
     padding: 10px;
     .close-recipe{
-        background-color: #d37e59;
+        background-color: #d49073;
         color: white;
         float: right;
         display: block; 
-
-        :hover{
-            background-color: #cd6c42;
-        }   
     }
+    .close-recipe:hover{
+        background-color: #cd6c42;
+    }   
     .title{
         margin-bottom: 30px;
         padding: 10px;
