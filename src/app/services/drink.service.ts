@@ -12,9 +12,7 @@ export class DrinkService {
   drinkListData = this.drinkList.asObservable();
   selectedDrinkData = this.selectedDrink.asObservable();
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getSelectedDrink(id) {
     this.lookupDrink(id).subscribe(res => {

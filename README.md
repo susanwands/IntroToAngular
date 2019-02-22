@@ -1,5 +1,25 @@
 # DrinklyNG
 
+# WITA - Intro to Angular 2/2019
+
+In 2018, WITA did an Intro to React project called Drinkly ... see the result here:  https://susanwands.github.io/IntroToReact/
+
+For our Intro to Angular we are recreating this project using the Angular framework instead. It will be good to see similarities and differences in the frameworks and approaches.
+
+## Resources
+
+### Our API endpoints: 
+https://www.thecocktaildb.com/api.php
+
+### Here is another Angular project someone built just like this.  Check it out ...
+https://github.com/glauberm/cocktail_recipes
+
+### Some great tutorials and blog posts:
+https://toddmotto.com/angular/
+
+https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
+
+## Project Info
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
 ## Development server
@@ -25,22 +45,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## Project Info
-
-In 2018, WITA did an Intro to React project called Drinkly ... see the result here:  https://susanwands.github.io/IntroToReact/
-
-For our Intro to Angular we are recreating this project using the Angular framework instead.  It will be good to see similarities and differences in the frameworks and approaches.
-
-## Resources
-
-https://www.thecocktaildb.com/api.php
-
-https://toddmotto.com/angular/
-
-https://blog.florimondmanca.com/consuming-apis-in-angular-the-model-adapter-pattern
-
-https://github.com/glauberm/cocktail_recipes
 
 
 
